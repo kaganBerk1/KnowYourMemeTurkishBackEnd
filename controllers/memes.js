@@ -18,7 +18,7 @@ exports.searchText = (req,res,next)=>{
     let searchText = req.query.searchText
     Meme.find({
         $or: [{title: {$regex: searchText}}]
-      }).then(data => {
+      }).sort( [['_id', -1]] ).then(data => {
         res.status(200).json({
             message: "Meme search list retrieved successfully!",
             memes: data
@@ -54,6 +54,15 @@ exports.upload = multer({
         }
     }
 });
+
+exports.getThreeMemes = (req,res,next)=>{
+    Meme.find().sort( [['_id', -1]] ).limit(3) .then(data => {
+        res.status(200).json({
+            message: "Three Meme list retrieved successfully!",
+            memes: data
+        });
+  });
+}
 
 exports.createMeme = (req, res, next) => {
     const url = req.protocol + '://' + req.get('host')
