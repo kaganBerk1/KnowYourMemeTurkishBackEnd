@@ -6,6 +6,7 @@ let express = require('express'),
 const {check} = require('express-validator')
 const {validationResult} = require('express-validator');
 const { Mongoose } = require('mongoose');
+const { getSingleMeme } = require('../controllers/memes');
 const DIR = './public/';
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -30,7 +31,7 @@ var upload = multer({
 
 router.post('/memeCreate', upload.single('memeImage'), (req, res, next) => {
     const url = req.protocol + '://' + req.get('host')
-    console.log(req.body.admin)
+    console.log(req.body.relatedLinks)
     const Meme=  new MemeModel({
         memeImage: url + '/public/' + req.file.filename,
         title: req.body.title,
@@ -77,4 +78,6 @@ router.get("/memes", (req, res, next) => {
         });
     });
 });
+
+router.get("/meme", getSingleMeme)
 module.exports = router;

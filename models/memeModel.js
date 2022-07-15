@@ -25,7 +25,9 @@ const MemeModel= new mongoose.Schema({
     memeImage: {
         type: String
     },
-    relatedLinks:[String]
+    relatedLinks:{
+        type:[String],
+     }
 },{
     timestamps:true,
 })
