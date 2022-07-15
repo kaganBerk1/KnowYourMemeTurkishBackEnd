@@ -57,7 +57,7 @@ exports.upload = multer({
 
 exports.createMeme = (req, res, next) => {
     const url = req.protocol + '://' + req.get('host')
-    console.log(req.body.relatedLinks)
+    //console.log(req.body.relatedLinks)
     const Meme=  new MemeModel({
         memeImage: url + '/public/' + req.file.filename,
         title: req.body.title,
