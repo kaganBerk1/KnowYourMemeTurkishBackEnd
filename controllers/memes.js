@@ -17,7 +17,7 @@ exports.getSingleMeme = (req, res) => {
 exports.searchText = (req,res,next)=>{
     let searchText = req.query.searchText
     Meme.find({
-        $or: [{title: {$regex: searchText}}]
+        $or: [{title: {$regex: searchText, $options : "i"}}]
       }).sort( [['_id', -1]] ).then(data => {
         res.status(200).json({
             message: "Meme search list retrieved successfully!",
