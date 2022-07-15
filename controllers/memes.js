@@ -26,7 +26,7 @@ exports.searchText = (req,res,next)=>{
     })
 }
 exports.getAllMemes = (req, res, next) => {
-    Meme.find().then(data => {
+    Meme.find().sort( [['_id', -1]] ).then(data => {
         res.status(200).json({
             message: "Meme list retrieved successfully!",
             memes: data
