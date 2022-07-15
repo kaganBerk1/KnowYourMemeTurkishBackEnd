@@ -14,7 +14,17 @@ exports.getSingleMeme = (req, res) => {
     })
      
   }
-
+exports.searchText = (req,res,next)=>{
+    let searchText = req.query.searchText
+    Meme.find({
+        $or: [{title: {$regex: searchText}}]
+      }).then(data => {
+        res.status(200).json({
+            message: "Meme search list retrieved successfully!",
+            memes: data
+        });
+    })
+}
 exports.getAllMemes = (req, res, next) => {
     Meme.find().then(data => {
         res.status(200).json({
