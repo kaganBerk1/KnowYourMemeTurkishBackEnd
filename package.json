@@ -4,8 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
-    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
+    "start": "nodemon app.js"
   },
   "engines": {
     "node": "14.x"
