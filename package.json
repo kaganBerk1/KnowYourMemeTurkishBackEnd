@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "builds":{
-      "src":"./app.js",
-      "use":"@vercel/node"
-  },
   "scripts": {
     "start": "nodemon app.js"
   },
