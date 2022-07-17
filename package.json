@@ -7,6 +7,9 @@
     "start": "nodemon app.js",
     "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
   },
+  "engines": {
+    "node": "14.x"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
