@@ -8,11 +8,8 @@ const cookieParser = require("cookie-parser");
 
 const cors = require("cors");
 
-app.use(express.static("build"));
-      app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname,  "build", "index.html"));
-});
-
+var path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
 /// DB Connection
 
 mongoose.connect(process.env.DB,{
