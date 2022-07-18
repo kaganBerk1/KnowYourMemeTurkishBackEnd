@@ -8,10 +8,6 @@ const cookieParser = require("cookie-parser");
 
 const cors = require("cors");
 
-app.use(express.static("build"));
-      app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname,  "build", "index.html"));
-});
 
 /// DB Connection
 
