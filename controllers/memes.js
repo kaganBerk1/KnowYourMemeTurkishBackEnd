@@ -3,13 +3,18 @@ const MemeModel= require("../models/memeModel")
 const {validationResult} = require('express-validator');
 let express = require('express'),
     multer = require('multer'),
-    uuidv4 = require('uuid/v4')
+    uuidv4 = require('uuid/v4');
+const { uploadFile, getFileStream ,s3} = require("./s3");
+const fs =require("fs")
+const util =require("util")
+const unlinkFile=util.promisify(fs.unlink)
+
 
 exports.getSingleMeme = (req, res) => {
     
-    //console.log(req)
+
     Meme.findById(req.query.id).then((doc)=>{
-        //console.log(doc)
+        console.log(doc)
         return res.status(200).json(doc)
     })
      
@@ -64,11 +69,11 @@ exports.getThreeMemes = (req,res,next)=>{
   });
 }
 
-exports.createMeme = (req, res, next) => {
-    const url = req.protocol + '://' + req.get('host')
-    //console.log(req.body.relatedLinks)
+exports.createMeme = async (req, res, next) => {
+    const result=await uploadFile(req.file);
+    await unlinkFile(req.file.path);
     const Meme=  new MemeModel({
-        memeImage: url + '/public/' + req.file.filename,
+        memeImage: result.Location,
         title: req.body.title,
         description: req.body.description,
         origin: req.body.origin,
