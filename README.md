@@ -8,6 +8,7 @@ This Back End project is for Bunun Nesi Komik  which is for storing Turkish Meme
 ## Features
 
 - AWS S3 Image upload to EU-WEST region
+- Connection with Express
 - Data is stored in MongoDB 
 - MongoDB Shcemas is created and used 
 - Auth requirments
