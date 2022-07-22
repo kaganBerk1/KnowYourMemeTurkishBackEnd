@@ -11,10 +11,7 @@ const unlinkFile=util.promisify(fs.unlink)
 
 
 exports.getSingleMeme = (req, res) => {
-    
-
     Meme.findById(req.query.id).then((doc)=>{
-        console.log(doc)
         return res.status(200).json(doc)
     })
      
