@@ -5,9 +5,7 @@ let express = require('express'),
     multer = require('multer'),
     uuidv4 = require('uuid/v4');
 const { uploadFile, getFileStream ,s3} = require("./s3");
-const fs =require("fs")
-const util =require("util")
-const unlinkFile=util.promisify(fs.unlink)
+
 
 
 exports.getSingleMeme = (req, res) => {
@@ -68,7 +66,7 @@ exports.getThreeMemes = (req,res,next)=>{
 
 exports.createMeme = async (req, res, next) => {
     const result=await uploadFile(req.file);
-    await unlinkFile(req.file.path);
+    //await unlinkFile(req.file.path);
     const Meme=  new MemeModel({
         memeImage: result.Location,
         title: req.body.title,
