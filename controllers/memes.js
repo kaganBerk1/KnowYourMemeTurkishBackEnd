@@ -68,7 +68,7 @@ exports.getThreeMemes = (req,res,next)=>{
 
 exports.createMeme = async (req, res, next) => {
     const result=await uploadFile(req.file);
-    await unlinkFile(req.file.path);
+    //await unlinkFile(req.file.path);
     const Meme=  new MemeModel({
         memeImage: result.Location,
         title: req.body.title,
