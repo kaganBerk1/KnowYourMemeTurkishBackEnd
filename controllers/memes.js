@@ -5,9 +5,7 @@ let express = require('express'),
     multer = require('multer'),
     uuidv4 = require('uuid/v4');
 const { uploadFile, getFileStream ,s3} = require("./s3");
-const fs =require("fs")
-const util =require("util")
-const unlinkFile=util.promisify(fs.unlink)
+
 
 
 exports.getSingleMeme = (req, res) => {
